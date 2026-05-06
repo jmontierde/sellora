@@ -1,36 +1,67 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Sellora
+
+Sellora is an AI-powered multi-store ecommerce platform built with Next.js, Clerk, and Convex.
 
 ## Getting Started
 
-First, run the development server:
+1. Install dependencies:
+
+```bash
+npm install
+```
+
+2. Configure your environment variables (Clerk, Convex, AI provider keys).
+
+3. Start the app:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+4. Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## How to Access Your Created Store
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+After you create a store from the dashboard, you can access it in two ways:
 
-## Learn More
+- From the dashboard, click **View Store**.
+- Or open the public store URL directly:
+  - `http://localhost:3000/store/<your-store-slug>`
 
-To learn more about Next.js, take a look at the following resources:
+Example: if your store name is `My Awesome Store`, the slug becomes `my-awesome-store`, and your URL is:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `http://localhost:3000/store/my-awesome-store`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Store Flow (End to End)
 
-## Deploy on Vercel
+1. Sign in from the landing page.
+2. Go to `/dashboard` (protected route).
+3. Create your store using **Create Store**.
+4. The app creates a slug from your store name (for example, `My Store` -> `my-store`).
+5. Open your storefront at `/store/<slug>`.
+6. Customers browse products, open product details, add items to cart, and checkout.
+7. You manage products, orders, and analytics from dashboard pages.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Main Routes
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `/` - Landing page
+- `/dashboard` - Main seller dashboard
+- `/dashboard/products` - Product management
+- `/dashboard/orders` - Order management
+- `/dashboard/analytics` - Sales and performance metrics
+- `/store/[slug]` - Public storefront
+- `/store/[slug]/product/[productId]` - Product detail
+- `/store/[slug]/cart` - Customer cart
+- `/store/[slug]/checkout` - Checkout
+
+## Tech Stack
+
+- Next.js (App Router)
+- Clerk (Authentication)
+- Convex (Backend + real-time data)
+- Tailwind CSS + custom UI components
+
+## Notes
+
+- Only dashboard routes are protected by auth middleware.
+- Storefront routes are public by design so customers can visit your store link directly.
