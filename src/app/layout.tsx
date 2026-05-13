@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   title: "Sellora - AI-Powered E-Commerce Platform",
   description:
     "Create and manage your online store with AI-powered tools. Multi-store SaaS e-commerce platform.",
+  icons: {
+    icon: "/icon.png",
+    apple: "/icon.png",
+  },
 };
 
 export default function RootLayout({
